@@ -17,6 +17,7 @@ setup(
     python_requires = ">=3.11",
     install_requires = [
         "pydantic>=2.8",
+        "openai>=1.35.13"
     ],
     include_package_data = True
 )
