@@ -1,3 +1,5 @@
+from typing import List
+
 from pydantic import BaseModel
 
 from oaikit.msg.role import OpenAIRole
@@ -10,4 +12,5 @@ __all__ = ["OAIMsg", "ContentStr", "ContentText", "ContentImage", "ImageURL", "O
 
 class OAIMsg(BaseModel):
     role: OpenAIRole
-    content: ContentStr | ContentText | ContentImage
+    content: ContentStr | List[ContentStr, ContentText | ContentImage]
+    #name: str ?
