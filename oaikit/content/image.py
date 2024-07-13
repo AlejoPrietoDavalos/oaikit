@@ -7,10 +7,8 @@ from pydantic import BaseModel
 __all__ = ["ImageURL", "ContentImage"]
 
 IMAGE_PNG = "image/png"     # Literal?
-DetailImageURL = Literal["auto", "low", "high"]
 DEFAULT_DETAIL = "auto"
-
-T_ContentImage = TypeVar("T_ContentImage", bound="ContentImage")
+DetailImageURL = Literal["auto", "low", "high"]
 
 
 def encode_img(path_img: Path) -> str:
@@ -25,6 +23,7 @@ class ImageURL(BaseModel):
     detail: DetailImageURL = DEFAULT_DETAIL
 
 
+T_ContentImage = TypeVar("T_ContentImage", bound="ContentImage")
 class ContentImage(BaseModel):
     image_url: ImageURL
     type: Literal["image_url"] = "image_url"

@@ -4,4 +4,4 @@ SYSTEM = "system"
 USER = "user"
 ASSISTANT = "assistant"
 
-OpenAIRole = Literal["system", "user", "assistant"]
+OAIRole = Literal["system", "user", "assistant"]
