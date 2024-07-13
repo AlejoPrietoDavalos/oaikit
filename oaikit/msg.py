@@ -6,12 +6,10 @@ from oaikit.role import OAIRole, SYSTEM, USER, ASSISTANT
 from oaikit.content.text import ContentText
 from oaikit.content.image import ContentImage, ImageURL
 
-ContentStr = str
-
-__all__ = ["OAIMsg", "ContentStr", "ContentText", "ContentImage", "ImageURL", "OAIRole"]
+__all__ = ["OAIMsg", "ContentText", "ContentImage", "ImageURL", "OAIRole"]
 
 T_OAIMsg = TypeVar("T_OAIMsg", bound="OAIMsg")
-T_Content = ContentStr | List[ContentStr | ContentText | ContentImage]
+T_Content = str | List[ContentText | ContentImage]
 
 class OAIMsg(BaseModel):
     role: OAIRole
