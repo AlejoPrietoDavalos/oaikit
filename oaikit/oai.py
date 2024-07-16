@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, List
 from pathlib import Path
 from abc import ABC
 
@@ -7,10 +7,13 @@ from openai.resources.chat.completions import Completions
 from openai.resources.embeddings import Embeddings
 from openai.resources.audio.transcriptions import Transcriptions
 
+from oaikit.utils import iter_blocks
+
 #from oaikit.utils import answer_from_stream
 #DEFAULT_OPENAI_API_BASE = "https://api.openai.com/v1"
 #openai.api_base = os.getenv(OPENAI_API_BASE, DEFAULT_OPENAI_API_BASE)
 
+MODEL_EMBEDDING = "text-embedding-ada-002"
 DEFAULT_MODEL = "gpt-4o"
 LANGUAGE_DEFAULT = "es"
 
@@ -47,7 +50,16 @@ class BaseOAI(ABC):
             language = language
         )
         return transcription.text
-    
+
+    def get_vectors(self, *, inputs: List[str], model = MODEL_EMBEDDING, len_blocks = 100) -> List[List[float]]:
+        """ Retorna los vectores de embeddings para una lista de strings."""
+        assert isinstance(inputs, list) and all(isinstance(i, str) for i in inputs), "Se espera una lista de strings a convertir en vectores."
+        vectors = []
+        for block in iter_blocks(inputs, len_blocks=len_blocks):
+            embeddings = self.embeddings.create(input=block, model=model).data
+            vectors.extend([e.embedding for e in embeddings])
+        return vectors
+
     # def get_stream(self, *, messages: List[Dict[str, str]], model: str) -> Stream:
     #     return self.completions.create(model=model, messages=messages, stream=True)
 
