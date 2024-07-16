@@ -1,4 +1,5 @@
-from typing import List, Dict
+from typing import Literal
+from pathlib import Path
 from abc import ABC
 
 from openai import OpenAI, Stream
@@ -11,6 +12,7 @@ from openai.resources.audio.transcriptions import Transcriptions
 #openai.api_base = os.getenv(OPENAI_API_BASE, DEFAULT_OPENAI_API_BASE)
 
 DEFAULT_MODEL = "gpt-4o"
+LANGUAGE_DEFAULT = "es"
 
 class BaseOAI(ABC):
     def __init__(self, *, api_key: str):
@@ -31,7 +33,21 @@ class BaseOAI(ABC):
     @property
     def transcriptions(self) -> Transcriptions:
         return self.client.audio.transcriptions
-
+    
+    def transcript(
+            self,
+            *,
+            path_file: Path,
+            language: Literal["es", "en"] = LANGUAGE_DEFAULT,
+            model: str = "whisper-1"
+        ) -> str:
+        transcription = self.transcriptions.create(
+            model = model,
+            file = open(path_file, "rb"),
+            language = language
+        )
+        return transcription.text
+    
     # def get_stream(self, *, messages: List[Dict[str, str]], model: str) -> Stream:
     #     return self.completions.create(model=model, messages=messages, stream=True)
 
