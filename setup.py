@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name = "oaikit",
-    version = "0.1.4",
+    version = "0.1.5",
     author = "Alejo Prieto Dávalos",
     author_email = "alejoprietodavalos@gmail.com",
     packages = find_packages(),
