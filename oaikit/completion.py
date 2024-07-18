@@ -3,6 +3,8 @@ from typing import Generator, Literal, List
 from openai.types.chat.chat_completion import ChatCompletion, Choice, ChatCompletionMessage
 from openai.types.chat.chat_completion_message_tool_call import ChatCompletionMessageToolCall
 
+__all__ = ["ChatCompletionHandler"]
+
 ChoiceFinishReason = Literal["stop", "length", "tool_calls", "content_filter", "function_call"]
 
 class ChatCompletionHandler:

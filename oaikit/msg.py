@@ -6,7 +6,7 @@ from oaikit.role import OAIRole, SYSTEM, USER, ASSISTANT
 from oaikit.content.text import ContentText
 from oaikit.content.image import ContentImage, ImageURL
 
-__all__ = ["OAIMsg", "ContentText", "ContentImage", "ImageURL", "OAIRole"]
+__all__ = ["OAIMsg"]
 
 T_OAIMsg = TypeVar("T_OAIMsg", bound="OAIMsg")
 T_Content = str | List[ContentText | ContentImage]

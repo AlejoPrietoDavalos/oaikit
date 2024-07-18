@@ -9,6 +9,8 @@ from openai.resources.audio.transcriptions import Transcriptions
 
 from oaikit.utils import iter_blocks
 
+__all__ = ["OAI"]
+
 #from oaikit.utils import answer_from_stream
 #DEFAULT_OPENAI_API_BASE = "https://api.openai.com/v1"
 #openai.api_base = os.getenv(OPENAI_API_BASE, DEFAULT_OPENAI_API_BASE)
@@ -18,8 +20,8 @@ DEFAULT_MODEL = "gpt-4o"
 LANGUAGE_DEFAULT = "es"
 
 class BaseOAI(ABC):
-    def __init__(self, *, api_key: str):
-        self._client = OpenAI(api_key=api_key)
+    def __init__(self, *, api_key: str, base_url: str = None):
+        self._client = OpenAI(api_key=api_key, base_url=base_url)
 
     @property
     def client(self) -> OpenAI:
