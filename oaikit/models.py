@@ -5,6 +5,7 @@ __all__ = ["OAIModels"]
 class OAIModels(Enum):
     """ `OAIModels.GPT_4o`"""
     GPT_4o = "gpt-4o"
+    GPT_4o_mini = "gpt-4o-mini"
     GPT_4 = "gpt-4"
     GPT_3_5_TURBO = "gpt-3.5-turbo"
 
