@@ -2,8 +2,6 @@ from typing import Literal, List, TypeVar, Type
 
 from pydantic import BaseModel, Field
 
-from oaikit.fn_calls.response_model import ResponseModel
-
 __all__ = ["Tool"]
 
 
