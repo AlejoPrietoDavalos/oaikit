@@ -2,7 +2,7 @@ from typing import Literal, List, TypeVar, Type
 
 from pydantic import BaseModel, Field
 
-from oaikit.fn_calls.response_model import ResponseModelOAI
+from oaikit.fn_call.model import FnCallOAI
 __all__ = ["Tool"]
 
 
@@ -37,7 +37,7 @@ class Tool(BaseModel):
         return self.model_dump()
 
     @classmethod
-    def from_response_model(cls: Type[T_Tool], *, description: str, response_model: Type[ResponseModelOAI]) -> Type[T_Tool]:
+    def from_response_model(cls: Type[T_Tool], *, description: str, response_model: Type[FnCallOAI]) -> Type[T_Tool]:
         return cls(
             function = FuncCall(
                 name = response_model.fn_name(),

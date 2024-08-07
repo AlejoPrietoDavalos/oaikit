@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 from instructor import OpenAISchema
 
-__all__ = ["ResponseModelOAI"]
+__all__ = ["FnCallOAI"]
 
 
 class OAISchema(OpenAISchema):
@@ -13,7 +13,7 @@ class OAISchema(OpenAISchema):
         return {"type": "function", "function": self.openai_schema}
 
 # TODO: Quizás crear distintas categorías o tipos de tools, clasificadores, checkeadores,...
-class ResponseModelOAI(OAISchema, ABC):
+class FnCallOAI(OAISchema, ABC):
     @classmethod
     @abstractmethod
     def fn_name(cls) -> str:
