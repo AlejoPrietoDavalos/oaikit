@@ -12,6 +12,7 @@ class OAISchema(OpenAISchema):
         """ Retorna la tool en el formato que OpenAI espera."""
         return {"type": "function", "function": self.openai_schema}
 
+# TODO: Quizás crear distintas categorías o tipos de tools, clasificadores, checkeadores,...
 class ResponseModelOAI(OAISchema, ABC):
     @classmethod
     @abstractmethod
