@@ -34,9 +34,14 @@ class FuncCall(BaseModel):
 
 T_Tool = TypeVar("T_Tool", bound="Tool")
 
+# Deprecar y usar OAISchema
 class Tool(BaseModel):
     type: T_Function = TYPE_FUNCTION
     function: FuncCall
+
+    @property
+    def tool(self) -> dict:
+        return self.model_dump()
 
     @classmethod
     def from_response_model(cls: Type[T_Tool], *, description: str, response_model: Type[ResponseModel]) -> Type[T_Tool]:
