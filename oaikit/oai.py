@@ -11,7 +11,7 @@ from instructor import Mode, Instructor
 from oaikit.typings import T_BaseModel
 
 from oaikit.utils import iter_blocks
-from oaikit.models import OAIModels
+from oaikit.models import T_OAIModels
 from oaikit.msg import OAIMsg
 
 __all__ = ["OAI"]
@@ -66,7 +66,7 @@ class BaseOAI(ABC):
     def create_instructor(
             self,
             *,
-            model: OAIModels,
+            model: T_OAIModels,
             msgs: List[OAIMsg],
             response_model: Type[T_BaseModel],
             max_retries: int = 3,
