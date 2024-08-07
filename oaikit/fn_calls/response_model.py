@@ -1,11 +1,18 @@
 from typing import Any
 from abc import ABC, abstractmethod
 
-from pydantic import BaseModel
+from instructor import OpenAISchema
 
-__all__ = ["ResponseModel"]
+__all__ = ["ResponseModelOAI"]
 
-class ResponseModel(BaseModel, ABC):
+
+class OAISchema(OpenAISchema):
+    @property
+    def tool(self) -> dict:
+        """ Retorna la tool en el formato que OpenAI espera."""
+        return {"type": "function", "function": self.openai_schema}
+
+class ResponseModelOAI(OAISchema, ABC):
     @classmethod
     @abstractmethod
     def fn_name(cls) -> str:

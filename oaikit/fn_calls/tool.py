@@ -1,17 +1,11 @@
 from typing import Literal, List, TypeVar, Type
 
 from pydantic import BaseModel, Field
-from instructor import OpenAISchema
 
 from oaikit.fn_calls.response_model import ResponseModel
 
 __all__ = ["Tool"]
 
-class OAISchema(OpenAISchema):
-    @property
-    def tool(self) -> dict:
-        """ Retorna la tool en el formato que OpenAI espera."""
-        return {"type": "function", "function": self.openai_schema}
 
 TYPE_FUNCTION = "function"
 T_Function = Literal["function"]
