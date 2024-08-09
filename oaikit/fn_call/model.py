@@ -2,15 +2,17 @@ from typing import Any
 from abc import ABC, abstractmethod
 
 from instructor import OpenAISchema
+from instructor.utils import classproperty
 
 __all__ = ["FnCallOAI"]
 
 
 class OAISchema(OpenAISchema):
-    @property
-    def tool(self) -> dict:
+    @classproperty
+    def tool(cls) -> dict:
         """ Retorna la tool en el formato que OpenAI espera."""
-        return {"type": "function", "function": self.openai_schema}
+        return {"type": "function", "function": cls.openai_schema}
+
 
 # TODO: Quizás crear distintas categorías o tipos de tools, clasificadores, checkeadores,...
 class FnCallOAI(OAISchema, ABC):
