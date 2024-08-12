@@ -6,11 +6,22 @@ import openai
 
 __all__ = ["OAISchema", "FnCallOAI"]
 
+class OAISchemaParams(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+
+
 class OAISchema(BaseModel):
     @classmethod
-    def fn_tool(cls, *, name: Optional[str] = None, description: Optional[str] = None) -> dict:
+    def fn_tool(cls, *, params: Optional[OAISchemaParams] = None) -> dict:
         """ Retorna la tool en el formato que OpenAI espera."""
-        tool = openai.pydantic_function_tool(cls, name=name, description=description)
+        if params is None:
+            params = OAISchemaParams()
+        tool = openai.pydantic_function_tool(
+            cls,
+            name=params.name,
+            description=params.description
+        )
         return tool
 
 
