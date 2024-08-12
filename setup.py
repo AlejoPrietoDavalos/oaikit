@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name = "oaikit",
-    version = "0.2.6",
+    version = "0.2.7",
     author = "Alejo Prieto Dávalos",
     author_email = "alejoprietodavalos@gmail.com",
     packages = find_packages(),
@@ -17,7 +17,7 @@ setup(
     python_requires = ">=3.11",
     install_requires = [
         "pydantic>=2.8",
-        "openai>=1.35.13",
+        "openai>=1.40.3",
         "instructor>=1.3.0"
     ],
     include_package_data = True
