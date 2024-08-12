@@ -3,6 +3,7 @@ from pathlib import Path
 from abc import ABC
 
 from openai import OpenAI, Stream
+import openai.resources.beta.chat.completions as beta_completions
 from openai.resources.chat.completions import Completions
 from openai.resources.embeddings import Embeddings
 from openai.resources.audio.transcriptions import Transcriptions
@@ -54,6 +55,10 @@ class BaseOAI(ABC):
     @property
     def completions(self) -> Completions:
         return self.client.chat.completions
+
+    @property
+    def completions_beta(self) -> beta_completions.Completions:
+        return self.client.beta.chat.completions
 
     @property
     def embeddings(self) -> Embeddings:
