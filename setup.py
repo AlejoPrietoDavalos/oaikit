@@ -2,23 +2,21 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 setup(
-    name = "oaikit",
-    version = "0.2.7",
-    author = "Alejo Prieto Dávalos",
-    author_email = "alejoprietodavalos@gmail.com",
-    packages = find_packages(),
-    description = "Python wrapper for OpenAI API.",
+    name="oaikit",
+    version="0.2.8",
+    author="Alejo Prieto Dávalos",
+    author_email="alejoprietodavalos@gmail.com",
+    packages=find_packages(),
+    description="Python wrapper for OpenAI API.",
     long_description = Path("README.md").read_text(),
     long_description_content_type = "text/markdown",
-    url = "https://pypi.org/project/oaikit/",
-    project_urls = {
-        "Source": "https://github.com/AlejoPrietoDavalos/oaikit/"
-    },
-    python_requires = ">=3.11",
-    install_requires = [
+    url="https://pypi.org/project/oaikit/",
+    project_urls={"Source": "https://github.com/AlejoPrietoDavalos/oaikit/"},
+    python_requires=">=3.11",
+    install_requires=[
         "pydantic>=2.8",
         "openai>=1.40.3",
         "instructor>=1.3.0"
     ],
-    include_package_data = True
+    include_package_data=True
 )

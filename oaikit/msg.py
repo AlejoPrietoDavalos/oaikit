@@ -29,13 +29,13 @@ class OAIMsg(BaseModel):
         return self.role == ASSISTANT
 
     @classmethod
-    def system(cls: Type[T_OAIMsg], *, content: T_Content) -> Type[T_OAIMsg]:
+    def system(cls: Type[T_OAIMsg], *, content: T_Content) -> T_OAIMsg:
         return cls(role=SYSTEM, content=content)
     
     @classmethod
-    def user(cls: Type[T_OAIMsg], *, content: T_Content) -> Type[T_OAIMsg]:
+    def user(cls: Type[T_OAIMsg], *, content: T_Content) -> T_OAIMsg:
         return cls(role=USER, content=content)
 
     @classmethod
-    def assistant(cls: Type[T_OAIMsg], *, content: T_Content) -> Type[T_OAIMsg]:
+    def assistant(cls: Type[T_OAIMsg], *, content: T_Content) -> T_OAIMsg:
         return cls(role=ASSISTANT, content=content)
