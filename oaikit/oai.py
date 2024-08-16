@@ -1,8 +1,7 @@
-from typing import Literal, List, Optional, Type, Any
+from typing import Literal, List, Optional, Type, Any, TypeVar
 from pathlib import Path
-from abc import ABC
 
-from openai import OpenAI, Stream
+from openai import OpenAI
 import openai.resources.beta.chat.completions as beta_completions
 from openai.resources.chat.completions import Completions
 from openai.resources.embeddings import Embeddings
@@ -17,15 +16,13 @@ from oaikit.msg import OAIMsg
 
 __all__ = ["OAI"]
 
-#from oaikit.utils import answer_from_stream
-#DEFAULT_OPENAI_API_BASE = "https://api.openai.com/v1"
-#openai.api_base = os.getenv(OPENAI_API_BASE, DEFAULT_OPENAI_API_BASE)
-
 MODEL_EMBEDDING = "text-embedding-ada-002"
 DEFAULT_MODEL = "gpt-4o"
 LANGUAGE_DEFAULT = "es"
 
-class BaseOAI(ABC):
+T_OAI = TypeVar("T_OAI", bound="OAI")
+
+class OAI:
     def __init__(
             self,
             *,
@@ -118,8 +115,3 @@ class BaseOAI(ABC):
     #     stream = self.get_stream(messages=messages, model=model)
     #     answer = answer_from_stream(stream=stream)
     #     return answer
-
-
-class OAI(BaseOAI):
-    def __init__(self, *, api_key: str):
-        super().__init__(api_key=api_key)
