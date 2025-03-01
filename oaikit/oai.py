@@ -65,6 +65,10 @@ class OAI:
     def transcriptions(self) -> Transcriptions:
         return self.client.audio.transcriptions
     
+    def parse(self):
+        self.completions_beta.parse()
+        return
+
     def create_instructor(
             self,
             *,
